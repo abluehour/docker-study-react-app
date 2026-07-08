@@ -34,10 +34,10 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha,prefix=v
+            type=semver,pattern=v{{version}}
+            type=semver,pattern=v{{major}}.{{minor}}
+            type=semver,pattern=v{{major}}
+            type=sha,prefix=
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -47,4 +47,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            VITE_API_URL=https://api.${{ github.repository.owner }}.croffledev.kr
+            VITE_API_BASE_URL=https://api.${{ github.repository.owner }}.croffledev.kr
