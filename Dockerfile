@@ -18,10 +18,6 @@ RUN yarn install --immutable
 # 소스코드 복사
 COPY . .
 
-# 환경변수
-ARG API_BASE_URL
-ENV VITE_API_BASE_URL=${API_BASE_URL}
-
 # 빌드
 RUN yarn build
 
