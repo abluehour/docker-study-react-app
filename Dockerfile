@@ -5,6 +5,11 @@ FROM node:24-alpine AS builder
 # 작업할 디렉토리 설정
 WORKDIR /app
 
+# GitHub Actions가 준 값을 이 ARG 변수로 받습니다.
+ARG VITE_API_BASE_URL
+# 빌드 시점에 ENV로 바꿔치기합니다. (yarn build가 읽을 수 있게)
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+
 # yarn v4 활성화
 RUN npm i -g corepack
 RUN corepack enable
