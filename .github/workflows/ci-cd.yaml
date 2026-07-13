@@ -48,3 +48,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             VITE_API_BASE_URL=https://api.${{ github.repository.owner }}.croffledev.kr
+
+      - name: Check Context
+        run: echo "Owner is ${{ github.repository_owner }}"
